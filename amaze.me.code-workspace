@@ -1,0 +1,33 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"launch": {
+    "configurations": [
+      {
+        "name": "Debug app",
+        "type": "node",
+        "request": "launch",
+        "cwd": "${workspaceRoot}",
+        "args": [
+          "start"
+        ],
+        "env": {
+          "REACT_APP_API_URL": "https://dash.akamaized.net/envivio/EnvivioDash3"
+        },
+        "runtimeExecutable": "yarn",
+        "resolveSourceMapLocations": [
+          "${workspaceFolder}/",
+          "!/node_modules/**"
+        ]
+      }
+    ],
+    "compounds": []
+  }
+}
