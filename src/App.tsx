@@ -4,7 +4,6 @@ import CssBaseline from '@mui/joy/CssBaseline';
 import {
   BrowserRouter, Outlet, Route, Routes,
 } from 'react-router-dom';
-import 'echarts-gl';
 
 import appTheme from './utils/themes/app/Theme';
 import Simulation from './pages/Simulation';
