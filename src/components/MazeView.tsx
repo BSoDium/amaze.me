@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Canvas } from '@react-three/fiber'
 import { Sheet } from '@mui/joy';
@@ -101,11 +101,27 @@ const Walls = ({ maze }: { maze: Maze }) => {
   );
 };
 
+export interface MazeViewSettings {
+  mazeSize: number;
+  wireframe: boolean;
+}
 
 export default function MazeView() {
   const [maze, setMaze] = useState<Maze>();
-  const [mazeSize, setMazeSize] = useState(3)
+  const [settings, setSettings] = useState<MazeViewSettings>({
+    mazeSize: 3,
+    wireframe: false,
+  })
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLoading(true);
+    generateMaze(settings.mazeSize, settings.mazeSize).then(maze => {
+      setMaze(maze);
+      setIsLoading(false);
+    });
+  }, [settings]);
+
 
   return (
     <Sheet
@@ -122,18 +138,18 @@ export default function MazeView() {
 
         <group position={[0, 0, 0]}>
           {maze && <Walls maze={maze} />}
-          <ContactShadows frames={1} position={[0, -0.1, 0]} scale={10 + mazeSize} opacity={0.5} far={1} blur={2} />
+          <ContactShadows frames={1} position={[0, -0.1, 0]} scale={10 + settings.mazeSize} opacity={0.5} far={1} blur={2} />
           <Grid
             position={[0, -0.05, 0]}
             renderOrder={-1}
-            args={[2 * mazeSize, 2 * mazeSize]}
+            args={[2 * settings.mazeSize, 2 * settings.mazeSize]}
             cellSize={0.5}
             cellThickness={1}
             cellColor="#6b6767"
             sectionSize={4}
             sectionThickness={1.5}
             sectionColor="#b13c69"
-            fadeDistance={4 * mazeSize + 20}
+            fadeDistance={4 * settings.mazeSize + 20}
             fadeStrength={1}
             followCamera
             infiniteGrid
@@ -144,14 +160,7 @@ export default function MazeView() {
         </GizmoHelper>
       </Canvas>
 
-      <MazeControls updateMaze={(newMazeSize) => {
-        setMazeSize(newMazeSize)
-        setIsLoading(true)
-        generateMaze(newMazeSize, newMazeSize).then((maze) => {
-          setMaze(maze)
-          setIsLoading(false)
-        });
-      }} loading={isLoading} />
+      <MazeControls loading={isLoading} settings={settings} setSettings={setSettings} />
     </Sheet>
   );
 }

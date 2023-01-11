@@ -1,6 +1,7 @@
 import { Box, Button, Card, Slider, Typography } from '@mui/joy';
 import React, { useState } from 'react';
 import { Default, Mobile } from '../utils/Responsive';
+import { MazeViewSettings } from './MazeView';
 
 
 function ControlPanel({ children }: {
@@ -41,10 +42,12 @@ function ControlPanel({ children }: {
 }
 
 export default function MazeControls({
-  updateMaze,
+  settings,
+  setSettings,
   loading
 }: {
-  updateMaze: (mazeSize: number) => void;
+  settings: MazeViewSettings;
+  setSettings: (settings: MazeViewSettings) => void;
   loading: boolean;
 }) {
   const [mazeSize, setMazeSize] = useState(3);
@@ -71,7 +74,12 @@ export default function MazeControls({
 
       <Button
         loading={loading}
-        onClick={() => updateMaze(mazeSize)}
+        onClick={() => {
+          setSettings({
+            ...settings,
+            mazeSize
+          })
+        }}
       >
         Generate Maze
       </Button>
