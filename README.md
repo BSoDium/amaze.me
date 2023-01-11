@@ -3,7 +3,7 @@
 
 A maze generator and three-dimensional visualizer for the web.
 
-Amaze.me is a web app that generates random mazes and visualizes them in 3D. It is written in JavaScript and uses the Three.js library for 3D rendering.
+Amaze.me is a web app that generates random mazes and visualizes them in 3D. It is written in TypeScript, uses the Three.js library for rendering and Mui-Joy for its UI.
 
 ## Usage
 
