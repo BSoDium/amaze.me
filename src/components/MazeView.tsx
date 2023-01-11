@@ -55,11 +55,11 @@ async function generateMaze(width: number, height: number): Promise<Maze> {
 
   dfs(0, 0);
 
-  return maze;
+  return Promise.resolve(maze);
 }
 
 
-const Walls = ({ maze }: { maze: Maze }) => {
+const Walls = ({ maze, wireframe = false }: { maze: Maze, wireframe?: boolean }) => {
   const { cells } = maze;
 
   const mesh = new MorphingMesh();
@@ -94,6 +94,7 @@ const Walls = ({ maze }: { maze: Maze }) => {
     >
       <meshStandardMaterial
         color="#e33365"
+        wireframe={wireframe}
         roughness={1}
         flatShading
       />
@@ -137,7 +138,7 @@ export default function MazeView() {
         <Environment preset="city" />
 
         <group position={[0, 0, 0]}>
-          {maze && <Walls maze={maze} />}
+          {maze && <Walls maze={maze} wireframe={settings.wireframe} />}
           <ContactShadows frames={1} position={[0, -0.1, 0]} scale={10 + settings.mazeSize} opacity={0.5} far={1} blur={2} />
           <Grid
             position={[0, -0.05, 0]}

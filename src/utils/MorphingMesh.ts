@@ -113,6 +113,7 @@ export default class MorphingMesh {
     this._garbageCollect();
   }
 
+
   public toGeometry(): THREE.BufferGeometry {
     const geometry = new THREE.BufferGeometry();
     const vertices = new Float32Array(this._vertices.length * 3);
