@@ -1,16 +1,20 @@
 import React from 'react';
-import { Button, Link } from '@mui/joy';
+import { Box, Button, Link } from '@mui/joy';
 
-import Layout from '../components/Layout';
 import { FiGithub } from 'react-icons/fi';
 import MazeView from '../components/MazeView';
 
 
 export default function Simulation() {
-
-
   return (
-    <Layout.Root>
+    <Box
+      component="div"
+      sx={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+      }}
+    >
       <Link
         href="https://github.com/BSoDium/amaze.me/fork"
         underline="none"
@@ -22,14 +26,13 @@ export default function Simulation() {
           variant='soft'
           size='lg'
           startDecorator={<FiGithub />}
-          sx={{ boxShadow: "md", borderRadius: 9999 }} 
+          sx={{ boxShadow: "md", borderRadius: 9999 }}
         >
           Fork on GitHub
         </Button>
       </Link>
 
       <MazeView />
-
-    </Layout.Root>
+    </Box>
   );
 }

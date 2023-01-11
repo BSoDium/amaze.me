@@ -1,14 +1,18 @@
 {
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {},
-	"editor.codeActionsOnSave": {
-		"source.fixAll.eslint": true
-	},
-	"launch": {
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "github.copilot-labs.showBrushesLenses": false,
+    "github.copilot-labs.showTestGenerationLenses": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "launch": {
     "configurations": [
       {
         "name": "Debug app",

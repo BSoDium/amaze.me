@@ -5,7 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
-    "@mui/joy": "^5.0.0-alpha.57",
+    "@mui/joy": "^5.0.0-alpha.62",
+    "@react-three/drei": "^9.51.22",
     "@react-three/fiber": "^8.10.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
